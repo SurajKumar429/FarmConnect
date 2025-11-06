@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { farmsAPI, expensesAPI, yieldAPI } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = ({ user }) => {
+  const navigate = useNavigate()
   const [stats, setStats] = useState({
     farms: 0,
     totalExpenses: 0,
@@ -77,17 +79,17 @@ const Dashboard = ({ user }) => {
       </div>
 
       <div className="feature-grid">
-        <div className="feature-card">
+        <div className="feature-card clickable" onClick={()=> navigate("/farms")}>
           <div className="feature-card-icon">🏡</div>
           <h3>Farm Management</h3>
           <p>Manage your farms, crops, and track all your agricultural activities in one place.</p>
         </div>
-        <div className="feature-card">
+        <div className="feature-card clickable" onClick={()=> navigate("/marketplace")}>
           <div className="feature-card-icon">💰</div>
           <h3>Marketplace</h3>
           <p>Buy and sell produce directly with buyers. Get the best prices for your crops.</p>
         </div>
-        <div className="feature-card">
+        <div className="feature-card clickable" onClick={()=> navigate("/market-prices")}>
           <div className="feature-card-icon">📊</div>
           <h3>Market Prices</h3>
           <p>Compare prices across different mandis and make informed selling decisions.</p>
@@ -97,12 +99,12 @@ const Dashboard = ({ user }) => {
           <h3>Sustainability</h3>
           <p>Track water, fertilizer, and resource usage to promote sustainable farming.</p>
         </div>
-        <div className="feature-card">
+        <div className="feature-card clickable"onClick={()=> navigate("/learning")}>
           <div className="feature-card-icon">📚</div>
           <h3>E-Learning</h3>
           <p>Access farming knowledge, tutorials, and best practices to improve your skills.</p>
         </div>
-        <div className="feature-card">
+        <div className="feature-card clickable"onClick={()=> navigate("/farms")}>
           <div className="feature-card-icon">📝</div>
           <h3>Farm Diary</h3>
           <p>Keep a digital diary of daily activities, weather, and important observations.</p>

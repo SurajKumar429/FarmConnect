@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FarmConnect - Digital Agriculture Platform
 
 ## NIIS Hackathon 2025 Entry
@@ -244,3 +245,7 @@ For issues or questions, please create an issue in the repository.
 
 **Built with ❤️ for the farming community**
 
+=======
+# Hackathon
+Rajendra sahoo
+>>>>>>> e14be90c86d54fe2cdd4084566e908981961a027

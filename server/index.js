@@ -23,6 +23,7 @@ app.use('/api/resources', require('./routes/resources'));
 app.use('/api/marketplace', require('./routes/marketplace'));
 app.use('/api/market-prices', require('./routes/marketPrices'));
 app.use('/api/learning', require('./routes/learning'));
+app.use('/api/chatbot', require('./routes/chatbot'));
 
 // Health check
 app.get('/api/health', (req, res) => {

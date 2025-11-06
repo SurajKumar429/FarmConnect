@@ -1,0 +1,31 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "myFarms": "My Farms",
+    "marketplace": "Marketplace",
+    "marketPrices": "Market Prices",
+    "resources": "Resources",
+    "learning": "Learning",
+    "language": "Language"
+  },
+  "chatbot": {
+    "title": "Farmer Assistant",
+    "placeholder": "Ask me anything about farming...",
+    "send": "Send",
+    "minimize": "Minimize",
+    "maximize": "Maximize",
+    "greeting": "Hello! I'm your farming assistant. How can I help you today?",
+    "error": "Sorry, I encountered an error. Please try again.",
+    "typing": "Typing...",
+    "suggestions": {
+      "cropCare": "How to care for crops?",
+      "pestControl": "Pest control methods",
+      "fertilizer": "Fertilizer recommendations",
+      "irrigation": "Irrigation tips",
+      "harvesting": "Harvesting best practices"
+    }
+  }
+}
+

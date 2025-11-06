@@ -129,3 +129,11 @@ export const learningAPI = {
   }),
 };
 
+// Chatbot API
+export const chatbotAPI = {
+  sendMessage: (message) => apiCall('/chatbot', {
+    method: 'POST',
+    body: JSON.stringify({ message }),
+  }),
+};
+
