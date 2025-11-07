@@ -6,7 +6,7 @@ const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
   const languages = [
-    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'en', name: 'English', flag: 'US' },
     { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
     { code: 'or', name: 'ଓଡ଼ିଆ', flag: '🇮🇳' },
   ];
