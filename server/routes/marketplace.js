@@ -3,11 +3,18 @@ const router = express.Router();
 const authenticateToken = require('../middleware/auth');
 const db = require('../config/db');
 
-// Get all marketplace listings
+
+
+// Get all marketplace listings (with seller contact info)
 router.get('/', async (req, res) => {
   try {
     const [listings] = await db.execute(
-      `SELECT m.*, u.name as seller_name, u.location as seller_location 
+      `SELECT 
+         m.*, 
+         u.name AS seller_name, 
+         u.email AS seller_email, 
+         u.phone AS seller_phone, 
+         u.location AS seller_location 
        FROM marketplace_listings m 
        JOIN users u ON m.seller_id = u.id 
        WHERE m.status = 'available' 
@@ -15,9 +22,11 @@ router.get('/', async (req, res) => {
     );
     res.json(listings);
   } catch (error) {
+    console.error('Error fetching marketplace listings:', error);
     res.status(500).json({ error: error.message });
   }
 });
+
 
 // Get user's listings
 router.get('/my-listings', authenticateToken, async (req, res) => {
@@ -53,4 +62,3 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 module.exports = router;
-

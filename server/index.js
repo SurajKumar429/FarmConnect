@@ -26,6 +26,8 @@ app.use('/api/learning', require('./routes/learning'));
 app.use('/api/chatbot', require('./routes/chatbot'));
 
 // Health check
+const buyerRoutes = require('./routes/buyer');
+app.use('/api/buyer', buyerRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'FarmConnect API is running' });
 });

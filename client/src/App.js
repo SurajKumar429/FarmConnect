@@ -12,6 +12,7 @@ import Learning from './components/Learning';
 import Resources from './components/Resources';
 import Home from './components/Home';
 import Chatbot from './components/Chatbot';
+import BuyerDashboard from './components/BuyerDashboard';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -88,6 +89,20 @@ function App() {
             path="/"
             element={user ? <Navigate to="/dashboard" /> : <Navigate to="/login" />}
           />
+          <Route
+            path="/buyer-dashboard"
+            element={
+            user ? (
+           user.user_type === 'buyer' ? (
+           <BuyerDashboard />
+            ) : (
+           <Navigate to="/dashboard" />
+           )
+            ) : (
+          <Navigate to="/login" />
+          )
+          }
+         />
         </Routes>
         <Chatbot />
       </div>

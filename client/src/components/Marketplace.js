@@ -7,6 +7,8 @@ const Marketplace = ({ user }) => {
   const [activeTab, setActiveTab] = useState('browse');
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [selectedSeller, setSelectedSeller] = useState(null);
+
 
   useEffect(() => {
     loadListings();
@@ -95,9 +97,14 @@ const Marketplace = ({ user }) => {
                     <p><strong>Total:</strong> ₹{(listing.quantity * listing.price_per_kg).toFixed(2)}</p>
                     {listing.location && <p><strong>Location:</strong> {listing.location}</p>}
                     {listing.description && <p>{listing.description}</p>}
-                    <button className="btn btn-success" style={{ marginTop: '1rem', width: '100%' }}>
-                      Contact Seller
+                    <button
+                             className="btn btn-success"
+                             style={{ marginTop: '1rem', width: '100%' }}
+                             onClick={() => setSelectedSeller(listing)}
+                        >
+                       Contact Seller
                     </button>
+
                   </div>
                 ))}
               </div>
@@ -155,6 +162,47 @@ const Marketplace = ({ user }) => {
           onSubmit={handleCreateListing}
         />
       )}
+
+      {/* Contact Seller Modal */}
+{selectedSeller && (
+  <div className="modal-overlay" onClick={() => setSelectedSeller(null)}>
+    <div className="modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-header">
+        <h2>Seller Contact Details</h2>
+        <button className="close-btn" onClick={() => setSelectedSeller(null)}>×</button>
+      </div>
+      <div className="modal-body">
+        <p><strong>Seller Name:</strong> {selectedSeller.seller_name}</p>
+        <p><strong>Email:</strong> {selectedSeller.seller_email || "Not available"}</p>
+        <p><strong>Phone:</strong> {selectedSeller.seller_phone || "Not available"}</p>
+        <p><strong>Location:</strong> {selectedSeller.location || "N/A"}</p>
+      </div>
+
+      <div className="modal-footer">
+        {selectedSeller.seller_email && (
+          <a
+            href={`mailto:${selectedSeller.seller_email}?subject=Regarding ${selectedSeller.crop_name}`}
+            className="btn btn-primary"
+          >
+            Email Seller
+          </a>
+        )}
+        {selectedSeller.seller_phone && (
+          <a href={`tel:${selectedSeller.seller_phone}`} className="btn btn-success">
+            Call Seller
+          </a>
+        )}
+        <button
+          className="btn btn-secondary"
+          onClick={() => setSelectedSeller(null)}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
@@ -271,4 +319,3 @@ const ListingModal = ({ onClose, onSubmit }) => {
 };
 
 export default Marketplace;
-

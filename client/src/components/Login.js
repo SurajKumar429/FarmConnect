@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,6 +17,13 @@ const Login = ({ onLogin }) => {
     try {
       const response = await authAPI.login(formData);
       onLogin(response.user, response.token);
+      if (response.user.user_type === 'buyer') {
+  navigate('/buyer-dashboard');
+      } else if (response.user.user_type === 'farmer') {
+      navigate('/dashboard');
+       } else {
+       navigate('/'); // default fallback
+    }
     } catch (err) {
       setError(err.message);
     } finally {
